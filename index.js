@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.json());
 
-const User = require("./models/user.js")
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: false }))
 // const appb = bodyParser();
 
 let datos = [
@@ -13,7 +12,7 @@ let datos = [
 		nombre: "Juan",
 		apellido: "García",
 		edad: 50,
-		cliente: false
+		cliente: false,
 	},
 
 	{
@@ -21,7 +20,7 @@ let datos = [
 		nombre: "Luis",
 		apellido: "Ayala",
 		edad: 22,
-		cliente: true
+		cliente: true,
 	},
 
 	{
@@ -29,7 +28,7 @@ let datos = [
 		nombre: "Diego",
 		apellido: "Bravo",
 		edad: 20,
-		cliente: true
+		cliente: true,
 	},
 ];
 // GET
@@ -52,21 +51,22 @@ app.get("/datos/:id", (req, res) => {
 });
 
 // POST (Crear)
-app.post('/datos', (req, res) => {
+app.post("/datos", (req, res) => {
 	const dato = req.body;
 
-	const idDatos = datos.map(dato => dato.id)
-	const idMaxima = Math.max(...idDatos)
-	
+	const idDatos = datos.map((dato) => dato.id);
+	const idMaxima = Math.max(...idDatos);
+
 	const nuevoDato = {
 		id: idMaxima + 1,
 		nombre: dato.nombre,
 		apellido: dato.apellido,
 		edad: dato.edad,
-		cliente: typeof dato.cliente !== "undefined" ? dato.cliente : false
-	}
+		cliente: typeof dato.cliente !== "undefined" ? dato.cliente : false,
+	};
 	datos = datos.concat(nuevoDato);
 	res.json(dato);
+	console.log(dato)
 });
 
 // hola[
