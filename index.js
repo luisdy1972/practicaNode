@@ -1,10 +1,8 @@
-const express = require("express");
-const app = express();
-app.use(express.json());
-
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.urlencoded({ extended: false }))
-// const appb = bodyParser();
+const { response } = require("express")
+const express = require("express")
+const app = express()
+app.use(express.json())
+const loger = require("./models/loger.js")
 
 let datos = [
 	{
@@ -30,32 +28,37 @@ let datos = [
 		edad: 20,
 		cliente: true,
 	},
-];
-// GET
+]
+
+app.use(loger)
+
 app.get("/", (req, res) => {
-	res.send(datos);
-});
+	res.send(datos)
+})
 
 app.get("/datos", (req, res) => {
-	res.json(datos);
-});
+	res.json(datos)
+})
 
 app.get("/datos/:id", (req, res) => {
-	const id = Number(req.params.id);
-	const dato = datos.find((dato) => dato.id === id);
+	const id = Number(req.params.id)
+	const dato = datos.find((dato) => dato.id === id)
 	if (dato) {
-		res.json(dato);
+		res.json(dato)
 	} else {
-		res.status(404).end();
+		res.status(404).end()
 	}
-});
-
-// POST (Crear)
+})
 app.post("/datos", (req, res) => {
-	const dato = req.body;
+	const dato = req.body
+	if (!dato || !dato.nombre || !dato.apellido || !dato.edad) {
+		return res.status(400).json({
+			error: "error al guardad datos",
+		})
+	}
 
-	const idDatos = datos.map((dato) => dato.id);
-	const idMaxima = Math.max(...idDatos);
+	const idDatos = datos.map((dato) => dato.id)
+	const idMaxima = Math.max(...idDatos)
 
 	const nuevoDato = {
 		id: idMaxima + 1,
@@ -63,32 +66,27 @@ app.post("/datos", (req, res) => {
 		apellido: dato.apellido,
 		edad: dato.edad,
 		cliente: typeof dato.cliente !== "undefined" ? dato.cliente : false,
-	};
-	datos = datos.concat(nuevoDato);
-	res.json(dato);
-	console.log(dato)
-});
+	}
+	datos = datos.concat(nuevoDato)
+	res.status(201).json(dato)
+})
 
-// hola[
-// 	{
-// 		id: "",
-// 		nombre: "Pedro",
-// 		apellido: "Picapiedra",
-// 		edad: 200,
-// 		cliente: false,
-// 	}
-// ];
-
-// DELETE
 app.delete("/datos/:id", (req, res) => {
-	const id = Number(req.params.id);
-	datos = datos.filter((dato) => dato.id !== id);
-	res.status(404).end();
-});
+	const id = Number(req.params.id)
+	datos = datos.filter((dato) => dato.id !== id)
+	res.status(404).end()
+})
 
-const PORT = 800;
+app.use((req, res) => {
+	console.log(req.path)
+	res.status(404).json({
+		error: "not found",
+	})
+})
+
+const PORT = 800
 app.listen(PORT, () => {
 	console.log(`Servidor corriendo en el puerto ${PORT}
 enlace: http://localhost:${PORT}
-`);
-});
+`)
+})

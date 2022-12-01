@@ -1,15 +1,23 @@
 # GET
-GEt http://localhost:800/datos/
+GEt http://localhost:800/1133543
 ###
 
 
 
 # DELETES
-DELETE http://localhost:800/datos/2
+DELETE http://localhost:800/datos/8
 ###
 
 
 
-# POST
-POST http://localhost:800/datos
-Content-Type: application-json "{ "nombre": "Diego","apellido": "Bravo","edad": 20,"cliente": true}"
+
+## POST
+POST http://localhost:800/datos HTTP/1.1
+content-type: application/json
+
+{
+	"nombre":"☻" ,
+	"apellido": "☺♥",
+	"edad": 20,
+	"cliente": true
+}
