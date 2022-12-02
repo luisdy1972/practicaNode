@@ -86,7 +86,7 @@ app.use((req, res) => {
 	})
 })
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 800
 // const PORT = 800
 app.listen(PORT, () => {
 	console.log(`Servidor corriendo en el puerto ${PORT}
