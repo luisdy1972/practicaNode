@@ -3,6 +3,7 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 const loger = require("./models/loger.js")
+const homeHTML = require("./models/home.js")
 
 let datos = [
 	{
@@ -33,7 +34,8 @@ let datos = [
 app.use(loger)
 
 app.get("/", (req, res) => {
-	res.send(datos)
+	// res.send(datos)
+	res.send(homeHTML)
 })
 
 app.get("/datos", (req, res) => {
@@ -85,6 +87,7 @@ app.use((req, res) => {
 })
 
 const PORT = process.env.PORT
+// const PORT = 800
 app.listen(PORT, () => {
 	console.log(`Servidor corriendo en el puerto ${PORT}
 enlace: http://localhost:${PORT}

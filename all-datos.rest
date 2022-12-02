@@ -1,6 +1,5 @@
 # GET
-GEt http://localhost:800/1133543
-###
+GEt http://localhost:800/datos
 
 
 
