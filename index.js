@@ -1,4 +1,3 @@
-const { response } = require("express")
 const express = require("express")
 const app = express()
 app.use(express.json())
@@ -89,8 +88,7 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 800
 // const PORT = 800
 app.listen(PORT, () => {
-	// 	console.log(`Servidor corriendo en el puerto ${PORT}
-	// enlace: http://localhost:${PORT}
-	// `)
+	console.log(`Servidor corriendo en el puerto ${PORT}
+	enlace: http://localhost:${PORT}
+	`)
 })
-//
