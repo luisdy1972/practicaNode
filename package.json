@@ -1,7 +1,6 @@
 {
   "name": "practicanode",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -13,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-  "nodemon": "2.0.20"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "body-parser": "1.20.1",
@@ -21,5 +20,14 @@
     "sequelize": "6.26.0",
     "sqlite3": "5.1.2",
     "standard": "17.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisdy1972/practicaNode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luisdy1972/practicaNode/issues"
+  },
+  "homepage": "https://github.com/luisdy1972/practicaNode#readme",
+  "description": ""
 }
